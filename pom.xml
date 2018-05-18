@@ -8,7 +8,7 @@
   
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<craftbukkit.version>1.7.2-R0.4-SNAPSHOT</craftbukkit.version>
+		<bukkit.version>1.9.2-R0.1-SNAPSHOT</bukkit.version>
 		<preciousstones.version>10.0.5</preciousstones.version>
 		<dynmap.version>1.9</dynmap.version>
         <build.number>Unknown</build.number>
@@ -40,11 +40,9 @@
  	<dependencies>
 		<dependency>
 			<groupId>org.bukkit</groupId>
-			<artifactId>craftbukkit</artifactId>
-			<version>${craftbukkit.version}</version>
-			<type>jar</type>
-			<scope>provided</scope>
-		</dependency>	
+			<artifactId>bukkit</artifactId>
+			<version>${bukkit.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>net.sacredlabyrinth.Phaed</groupId>
 			<artifactId>PreciousStones</artifactId>
