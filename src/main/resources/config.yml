@@ -12,6 +12,7 @@ layer:
     layer-priority: 10              # Ordering priority in layer menu (higher shows on top)
     hide-by-default: false          # Make layer hidden by default
     min-zoom: 0                     # Set minimum zoom level when markers should be visible (0=default, any zoom)
+    max-players: -1                 # Don't update fields if this many players are online
 html: 
   #line needs to have a whitespace character at the begining, HTML output is not changed by this! 
   line: ' %text% <span style=\"font-weight:bold;\"> %value% </span><br />'

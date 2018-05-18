@@ -15,6 +15,8 @@ import net.sacredlabyrinth.Phaed.PreciousStones.field.FieldFlag;
 import net.sacredlabyrinth.Phaed.PreciousStones.managers.EntryManager;
 import net.sacredlabyrinth.Phaed.PreciousStones.managers.ForceFieldManager;
 import net.sacredlabyrinth.Phaed.PreciousStones.managers.SettingsManager;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -36,6 +38,7 @@ public class Fields {
 	private int task;
 	private boolean enable;
 	private int updateSeconds;
+	private int maxPlayers;
 	private String label;
 	private int layerPriority;
 	private boolean hideByDefault;
@@ -72,6 +75,7 @@ public class Fields {
 		
 		enable = cfg.getBoolean(CONFIG + "enable");
 		updateSeconds = Math.max(cfg.getInt(CONFIG + "update-seconds"), 2);
+		maxPlayers = cfg.getInt(CONFIG + "max-players", -1);
 		label = cfg.getString(CONFIG + "label", LABEL);
 		layerPriority = cfg.getInt(CONFIG + "layer-priority");
 		hideByDefault = cfg.getBoolean(CONFIG + "hide-by-default");
@@ -391,6 +395,10 @@ public class Fields {
 	}
 
 	private void updateMarkerSet() {
+		if (maxPlayers >= 0 && Bukkit.getOnlinePlayers().size() > maxPlayers) {
+			return;
+		}
+
 		Map<String, AreaMarker> newmap = new HashMap<String, AreaMarker>();
 		Map<String, Marker> newMarkers = new HashMap<String, Marker>();
 
