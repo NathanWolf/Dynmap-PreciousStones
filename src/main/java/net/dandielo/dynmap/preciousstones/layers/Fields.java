@@ -19,6 +19,7 @@ import net.sacredlabyrinth.Phaed.PreciousStones.managers.SettingsManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.dynmap.markers.AreaMarker;
 import org.dynmap.markers.Marker;
@@ -181,9 +182,8 @@ public class Fields {
 	}
 
 	private String getFieldPopup(AreaMarker m, Field f) {
-		int data = f.getBlock().getData();
-		//try to get the field style with ID and data values
-		FieldStyle as = field_styles.get(f.getTypeId() + (data == 0 ? "" : ":" + new Integer(data).toString()) + "_style");
+		//try to get the field style by material type
+		FieldStyle as = field_styles.get(f.getType() + "_style");
 
 		//if null use default style instead
 		if (as == null) {
@@ -236,11 +236,8 @@ public class Fields {
 	}
 
 	private void addStyle(AreaMarker m, Field f) {
-
-
-		int data = f.getBlock().getData();
-		//try to get the field style with ID and data values
-		FieldStyle as = field_styles.get(f.getTypeId() + (data == 0 ? "" : ":" + new Integer(data).toString()) + "_style");
+		//try to get the field style by material type
+		FieldStyle as = field_styles.get(f.getType() + "_style");
 		
 		//if null use default style instead
 		if (as == null) {
@@ -294,9 +291,9 @@ public class Fields {
 		}
 
 		// retrieve the markericon from the icons list.
-		MarkerIcon icon = icons.get(field.getTypeId() + "_style");
+		MarkerIcon icon = icons.get(field.getType() + "_style");
 		Location loc = field.getLocation();
-		FieldStyle fs = field_styles.get(field.getTypeId() + "_style");
+		FieldStyle fs = field_styles.get(field.getType() + "_style");
 		String replaced_markers = replaceSubstitutions(fs.marker_text_format,
 				field);
 
