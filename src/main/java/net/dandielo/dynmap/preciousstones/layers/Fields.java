@@ -255,30 +255,6 @@ public class Fields {
 		m.setFillStyle(as.fillopacity, fc);
 
 	}
-	
-	private void handlePlayerVisibility_Hide(Field field)
-	{
-		if (!field.hasFlag(FieldFlag.DYNMAP_HIDE_PLAYERS)) {
-			return;
-		}
-		
-		EntryManager em = plugin.getPreciousStones().getEntryManager();
-		
-		for ( String player : em.getInhabitants(field) )
-		{
-			if ( field.isAllowed(player) )
-			{
-				plugin.getPlayerManager().getEntry(player).setVisible(false);
-				plugin.getDynmapApi().assertPlayerVisibility(DynmapPreciousStones.getInstance().getServer().getPlayer(player), false, plugin);
-				//plugin.getDynmapApi().setPlayerVisiblity(player, false);
-			}
-			else
-			{
-				plugin.getPlayerManager().getEntry(player).setVisible(true);
-				plugin.getDynmapApi().assertPlayerVisibility(DynmapPreciousStones.getInstance().getServer().getPlayer(player), true, plugin);
-			}
-		}
-	}
 
 	private void handleFieldIcon(World world, Field field,
 			Map<String, Marker> newMarkers) {
@@ -412,7 +388,6 @@ public class Fields {
 			for (Field f : fields) {
 				handleFieldArea(world, f, newmap);
 				handleFieldIcon(world, f, newMarkers);
-				handlePlayerVisibility_Hide(f);
 			}
 		}
 

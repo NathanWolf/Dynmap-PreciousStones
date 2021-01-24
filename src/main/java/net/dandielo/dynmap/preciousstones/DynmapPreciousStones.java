@@ -7,7 +7,6 @@ import org.dynmap.DynmapAPI;
 import org.dynmap.markers.MarkerAPI;
 
 import net.dandielo.dynmap.preciousstones.layers.Fields;
-import net.dandielo.dynmap.preciousstones.managers.PlayerManager;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +24,6 @@ public class DynmapPreciousStones extends JavaPlugin {
 	private FileConfiguration cfg;
 
 	private Fields fields;
-	private PlayerManager playerManager;
 	private PreciousStones preciousstones;
 
 	public void onEnable() {
@@ -45,8 +43,6 @@ public class DynmapPreciousStones extends JavaPlugin {
 		}
 
 		initApis();
-		
-		playerManager = new PlayerManager();
 
 		/* Load configuration */
 		cfg = getConfig();
@@ -55,8 +51,6 @@ public class DynmapPreciousStones extends JavaPlugin {
 
 		if ( cfg == null )
 			this.saveDefaultConfig();
-		
-		getServer().getPluginManager().registerEvents(new DynmapPreciousStonesListener(), instance);
 		
 		// set up layers
 		info("version " + this.getDescription().getVersion() + " is activated");
@@ -121,11 +115,6 @@ public class DynmapPreciousStones extends JavaPlugin {
 
 	public PreciousStones getPreciousStones() {
 		return preciousstones;
-	}
-
-	public PlayerManager getPlayerManager()
-	{
-		return playerManager;
 	}
 	
 }
